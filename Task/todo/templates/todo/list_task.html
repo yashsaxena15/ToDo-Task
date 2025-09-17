@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List</title>
+    <style>
+        /* General body and background */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4038b6, #0061d8, #007fe1, #0098d4, #00adb9, #00bf99);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 14px;
+            box-shadow: 0px 6px 25px rgba(0,0,0,0.25);
+            max-width: 800px;
+            width: 95%;
+            margin: 40px 0;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        h1 {
+            color: #4038b6;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        ol {
+            padding-left: 20px;
+        }
+
+        li {
+            background: #f7f7f7;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            list-style-type: upper-roman;
+        }
+
+        li p {
+            margin: 6px 0;
+            color: #333;
+        }
+
+        li p b {
+            color: #007fe1;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        button.update-btn {
+            background: linear-gradient(90deg, #00adb9, #00bf99);
+            border: none;
+            color: white;
+            font-weight: 600;
+            border-radius: 6px;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button.update-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+        }
+
+        button.delete-btn {
+            background: linear-gradient(90deg, #ff5f6d, #ffc371);
+            border: none;
+            color: white;
+            font-weight: 600;
+            border-radius: 6px;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button.delete-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .create-task, .logout-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        a.create-link {
+            background: linear-gradient(90deg, #4038b6, #0061d8, #007fe1, #0098d4, #00adb9, #00bf99);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        a.create-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+        }
+
+        button.logout-btn {
+            background: linear-gradient(90deg, #ff5f6d, #ffc371);
+            border: none;
+            color: white;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button.logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: scale(0.95);}
+            to {opacity: 1; transform: scale(1);}
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="create-task">
+            <h1>Task List</h1>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </div>
+
+        {% if not objects %}
+            <h2 style="text-align:center; color:#007fe1;">No Tasks added yet. To add click below &#128071;</h2>
+        {% endif %}
+
+        <ol>
+            {% for object in objects %}
+            <li>
+                <p><b>Title :</b> {{ object.title }}</p>
+                <p><b>Description :</b> {{ object.description }}</p>
+                <p><b>Date of Creation :</b> {{ object.date_of_creation }}</p>
+                <p><b>Date of Updation :</b> {{ object.date_of_updation }}</p>
+                <p><b>Task :</b> {% if object.complete %} Completed &#9989; {% else %} Not Completed &#10060; {% endif %}</p>
+                
+                <div class="actions">
+                    <form method="get" action="{% url 'update_task' object.pk %}">
+                        <button type="submit" class="update-btn">Update</button>
+                    </form>
+                    <form method="post" action="{% url 'delete_task' object.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-btn">Delete</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ol>
+
+        <div style="text-align:center; margin-top:20px;">
+            <a href="{% url 'create_task' %}" class="create-link">Create New Task</a>
+        </div>
+    </div>
+</body>
+</html>
+

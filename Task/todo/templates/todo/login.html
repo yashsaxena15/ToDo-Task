@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4038b6, #0061d8, #007fe1, #0098d4, #00adb9, #00bf99);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 14px;
+            box-shadow: 0px 6px 25px rgba(0,0,0,0.25);
+            width: 100%;
+            max-width: 400px; /* responsive width */
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: #4038b6;
+            font-weight: bold;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 12px 40px 12px 12px; /* space for eye icon */
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #00adb9;
+            box-shadow: 0 0 6px rgba(0,173,185,0.6);
+        }
+
+        #togglePassword {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            user-select: none;
+        }
+
+        button {
+            margin-top: 18px;
+            padding: 12px;
+            background: linear-gradient(90deg, #4038b6, #0061d8, #007fe1, #0098d4, #00adb9, #00bf99);
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007fe1;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: scale(0.95);}
+            to {opacity: 1; transform: scale(1);}
+        }
+
+        @media (max-width: 450px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-box">
+                {{ form.username }}
+            </div>
+            <div class="input-box">
+                {{ form.password }}
+                <span id="togglePassword">👁️</span>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <a href="{% url 'register' %}">Don't have an account? Register</a>
+    </div>
+
+    <script>
+ 	 // Add placeholders
+        document.getElementById('id_username').setAttribute('placeholder', 'Enter your username');
+        document.getElementById('id_password').setAttribute('placeholder', 'Enter your password');
+        // Password toggle
+        const togglePassword = document.querySelector("#togglePassword");
+        const passwordField = document.querySelector("#id_password"); // Django automatically assigns this ID
+
+        togglePassword.addEventListener("click", () => {
+            const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+            passwordField.setAttribute("type", type);
+            togglePassword.textContent = type === "password" ? "👁️" : "🙈";
+        });
+    </script>
+</body>
+</html>
