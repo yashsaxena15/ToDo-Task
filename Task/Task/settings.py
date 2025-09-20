@@ -76,10 +76,10 @@ WSGI_APPLICATION = 'Task.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'yashsaxena15$todo_app',     # your DB name
-        'USER': 'yashsaxena15',            # or 'yash' if you made that user
-        'PASSWORD': 'Yash@2005',
-        'HOST': 'yashsaxena15.mysql.pythonanywhere-services.com',
+        'NAME': '',     # your DB name
+        'USER': '',            # or 'yash' if you made that user
+        'PASSWORD': '',
+        'HOST': '',  # confidential 
         'PORT': '3306',
     }
 }
