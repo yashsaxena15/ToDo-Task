@@ -149,7 +149,13 @@ gunicorn Task.wsgi:application --bind 0.0.0.0:$PORT
 
 ## 📸 Screenshots
 
-*Add screenshots here (optional)*
+<!-- *Add screenshots here (optional)* -->
+![Task List](https://github.com/yashsaxena15/ToDo-Task/blob/main/ScreenShots/image.png)
+
+![Login Panel](https://github.com/yashsaxena15/ToDo-Task/blob/main/ScreenShots/Screenshot%202026-03-23%20174317.png)
+
+![Create Task](https://github.com/yashsaxena15/ToDo-Task/blob/main/ScreenShots/Screenshot%202026-03-23%20174504.png)
+
 
 ---
 
