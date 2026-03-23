@@ -1,0 +1,17 @@
+# this is used to ignore specific folder in your project
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+.venv/
+
+# Django
+db.sqlite3
+
+# Environment
+.env
+
+staticfiles/
