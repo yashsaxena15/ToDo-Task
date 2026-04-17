@@ -100,6 +100,7 @@ DB_USER=postgres.xxxxx
 DB_PASSWORD=your_password
 DB_HOST=your_host
 DB_PORT=6543
+ALLOWED_HOSTS=
 ```
 
 ---
