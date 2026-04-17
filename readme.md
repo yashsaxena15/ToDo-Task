@@ -1,12 +1,12 @@
 # 📝 ToDo Task Web Application
 
-A full-stack ToDo web application built using **Django** and deployed on **Render** with a **PostgreSQL (Supabase)** database.
+A full-stack ToDo web application built using **Django** and deployed on **Render** with a **MySQL** database.
 
 ---
 
 ## 🚀 Live Demo
 
-🔗 https://todo-task-81pu.onrender.com
+🔗 [Live Demo](https://todo-task-81pu.onrender.com)
 
 ---
 
@@ -18,14 +18,14 @@ A full-stack ToDo web application built using **Django** and deployed on **Rende
 * 👤 User-specific task management
 * 🔒 Secure password hashing (Django Auth)
 * 🌐 Deployed on cloud (Render)
-* 🗄️ Cloud database using Supabase (PostgreSQL)
+* 🗄️ Cloud database of VM using MySQL
 
 ---
 
 ## 🛠️ Tech Stack
 
 * **Backend:** Django (Python)
-* **Database:** PostgreSQL (Supabase)
+* **Database:** MySQL
 * **Deployment:** Render
 * **Server:** Gunicorn
 * **Static Files:** WhiteNoise
@@ -36,24 +36,23 @@ A full-stack ToDo web application built using **Django** and deployed on **Rende
 ## 📂 Project Structure
 
 ```
-ToDo-Task/
-│
-├── Task/                # Main Django project
-│   ├── settings.py
-│   ├── urls.py
-│   ├── wsgi.py
-│   └── ...
-│
-├── todo/                # App
-│   ├── models.py
-│   ├── views.py
-│   ├── urls.py
-│   ├── templates/
-│   └── migrations/
-│
-├── requirements.txt
-├── manage.py
-└── .env (not included in repo)
+Task/                # Main Django project
+   ├── settings.py
+   ├── urls.py
+   ├── wsgi.py
+   └── ...
+
+todo/                # App
+   ├── models.py
+   ├── views.py
+   ├── urls.py
+   ├── templates/
+   └── migrations/
+
+── requirements.txt
+── manage.py
+── .env (not included in repo)
+
 ```
 
 ---
@@ -95,12 +94,12 @@ Create a `.env` file:
 SECRET_KEY=your_secret_key
 DEBUG=True
 
-DB_NAME=postgres
-DB_USER=postgres.xxxxx
+DB_NAME=mysql
+DB_USER=mysql.xxxxx
 DB_PASSWORD=your_password
 DB_HOST=your_host
-DB_PORT=6543
-ALLOWED_HOSTS=
+DB_PORT=3306
+ALLOWED_HOSTS=*
 ```
 
 ---
@@ -141,7 +140,7 @@ gunicorn Task.wsgi:application --bind 0.0.0.0:$PORT
 ## 🧠 Key Learnings
 
 * Django deployment on Render
-* PostgreSQL integration with Supabase
+* Using MySQL with remote VM (Docker-based)
 * Environment variable management
 * Debugging production errors
 * Handling migrations in cloud environment
@@ -166,6 +165,11 @@ gunicorn Task.wsgi:application --bind 0.0.0.0:$PORT
 * LinkedIn: https://www.linkedin.com/in/yashsaxena15
 
 ---
+
+## 🏗️ Architecture
+
+Frontend → Django → Gunicorn → Render  
+Database → MySQL (Docker container on VM)
 
 ## ⭐ Give a Star
 
