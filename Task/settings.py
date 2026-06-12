@@ -136,3 +136,10 @@ LOGIN_REDIRECT_URL = "list_task"
 LOGOUT_REDIRECT_URL = "login"
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://tasks.backendforge.qd.je",
+    "http://tasks.backendforge.qd.je",
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

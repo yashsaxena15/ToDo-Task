@@ -1,0 +1,32 @@
+# Git
+.git
+.gitignore
+
+# VS Code
+.vscode
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# Runtime files
+*.sock
+*.ctl
+
+# Django generated files
+staticfiles/
+media/
+
+# OS files
+.DS_Store

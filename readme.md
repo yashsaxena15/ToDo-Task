@@ -1,176 +1,216 @@
 # 📝 ToDo Task Web Application
 
-A full-stack ToDo web application built using **Django** and deployed on **Render** with a **MySQL** database.
+A full-stack ToDo web application built using **Django** and **MySQL**, deployed using **Docker**, **Gunicorn**, and **Nginx** on an Oracle Cloud VM.
 
 ---
 
 ## 🚀 Live Demo
 
-🔗 [Live Demo](https://todo-task-81pu.onrender.com)
+🔗 [https://tasks.backendforge.qd.je](https://tasks.backendforge.qd.je)
 
 ---
 
-## 📌 Features
+## 🎯 Features
 
-* 🔐 User Authentication (Register, Login, Logout)
-* 📝 Create, Update, Delete Tasks
-* ✅ Mark tasks as complete/incomplete
-* 👤 User-specific task management
-* 🔒 Secure password hashing (Django Auth)
-* 🌐 Deployed on cloud (Render)
-* 🗄️ Cloud database of VM using MySQL
+- 🔐 User Authentication (Register, Login, Logout)
+- ✏️ Create, Update, Delete Tasks
+- ✅ Mark Tasks as Complete/Incomplete
+- 👤 User-Specific Task Management
+- 🔒 Secure Password Hashing using Django Authentication
+- 🐳 Dockerized Deployment
+- 🌐 Custom Domain with Nginx Reverse Proxy
+- 🗄️ MySQL Database Integration
+- ⚡ Production Ready Setup with Gunicorn and WhiteNoise
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Backend:** Django (Python)
-* **Database:** MySQL
-* **Deployment:** Render
-* **Server:** Gunicorn
-* **Static Files:** WhiteNoise
-* **Environment Variables:** python-decouple
-
----
-
-## 📂 Project Structure
-
-```
-Task/                # Main Django project
-   ├── settings.py
-   ├── urls.py
-   ├── wsgi.py
-   └── ...
-
-todo/                # App
-   ├── models.py
-   ├── views.py
-   ├── urls.py
-   ├── templates/
-   └── migrations/
-
-── requirements.txt
-── manage.py
-── .env (not included in repo)
-
-```
-
----
-
-## ⚙️ Installation (Local Setup)
-
-### 1️⃣ Clone the repository
-
-```
-git clone https://github.com/yashsaxena15/ToDo-Task.git
-cd ToDo-Task
-```
-
----
-
-### 2️⃣ Create virtual environment
-
-```
-python -m venv venv
-source venv/bin/activate   # Linux/Mac
-venv\Scripts\activate      # Windows
-```
-
----
-
-### 3️⃣ Install dependencies
-
-```
-pip install -r requirements.txt
-```
-
----
-
-### 4️⃣ Setup environment variables
-
-Create a `.env` file:
-
-```
-SECRET_KEY=your_secret_key
-DEBUG=True
-
-DB_NAME=mysql
-DB_USER=mysql.xxxxx
-DB_PASSWORD=your_password
-DB_HOST=your_host
-DB_PORT=3306
-ALLOWED_HOSTS=*
-```
-
----
-
-### 5️⃣ Run migrations
-
-```
-python manage.py migrate
-```
-
----
-
-### 6️⃣ Run server
-
-```
-python manage.py runserver
-```
-
----
-
-## ☁️ Deployment (Render)
-
-* Connected GitHub repository
-* Added environment variables in Render dashboard
-* Used Gunicorn as WSGI server
-* Configured:
-
-```
-Build Command:
-pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput
-
-Start Command:
-gunicorn Task.wsgi:application --bind 0.0.0.0:$PORT
-```
-
----
-
-## 🧠 Key Learnings
-
-* Django deployment on Render
-* Using MySQL with remote VM (Docker-based)
-* Environment variable management
-* Debugging production errors
-* Handling migrations in cloud environment
-
----
-
-## 📸 Screenshots
-
-<!-- *Add screenshots here (optional)* -->
-![Task List](https://github.com/yashsaxena15/ToDo-Task/blob/main/ScreenShots/image.png)
-
-![Login Panel](https://github.com/yashsaxena15/ToDo-Task/blob/main/ScreenShots/Screenshot%202026-03-23%20174317.png)
-
-![Create Task](https://github.com/yashsaxena15/ToDo-Task/blob/main/ScreenShots/Screenshot%202026-03-23%20174504.png)
-
-
----
-
-## 📬 Contact
-
-* GitHub: https://github.com/yashsaxena15
-* LinkedIn: https://www.linkedin.com/in/yashsaxena15
+| Layer | Technology |
+|-------|-----------|
+| **Backend** | Python, Django 5.2 |
+| **Database** | MySQL |
+| **Deployment** | Docker, Gunicorn, Nginx, Oracle Cloud VM |
+| **Static Files** | WhiteNoise |
+| **Configuration** | python-decouple |
 
 ---
 
 ## 🏗️ Architecture
 
-Frontend → Django → Gunicorn → Render  
-Database → MySQL (Docker container on VM)
+```
+User Browser
+     ↓
+Nginx Reverse Proxy
+     ↓
+Docker Container
+     ↓
+Gunicorn
+     ↓
+Django Application
+     ↓
+MySQL Database
+```
 
-## ⭐ Give a Star
+---
 
-If you found this project helpful, please ⭐ the repository!
+## 📁 Project Structure
+
+```
+Task/
+├── settings.py
+├── urls.py
+├── wsgi.py
+└── ...
+todo/
+├── models.py
+├── views.py
+├── urls.py
+├── templates/
+└── migrations/
+requirements.txt
+manage.py
+Dockerfile
+.env (not included in repository)
+```
+
+---
+
+## ⚙️ Local Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yashsaxena15/ToDo-Task.git
+cd ToDo-Task
+```
+
+### 2. Create Virtual Environment
+
+```bash
+python -m venv venv
+
+# Linux / macOS
+source venv/bin/activate
+
+# Windows
+venv\Scripts\activate
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configure Environment Variables
+
+Create a `.env` file:
+
+```env
+SECRET_KEY=your_secret_key
+DEBUG=True
+DB_NAME=todo_db
+DB_USER=your_username
+DB_PASSWORD=your_password
+DB_HOST=your_host
+DB_PORT=3306
+```
+
+### 5. Apply Migrations
+
+```bash
+python manage.py migrate
+```
+
+### 6. Run Development Server
+
+```bash
+python manage.py runserver
+```
+
+---
+
+## 🐳 Docker Deployment
+
+### Build Docker Image
+
+```bash
+docker build -t todo-app .
+```
+
+### Run Container
+
+```bash
+docker run -d \
+  --name todo-app \
+  -p 8001:8000 \
+  --env-file .env \
+  --restart unless-stopped \
+  todo-app
+```
+
+### Check Container Status
+
+```bash
+docker ps
+docker logs -f todo-app
+```
+
+---
+
+## 🌐 Nginx Configuration
+
+Example reverse proxy configuration:
+
+```nginx
+server {
+    listen 80;
+    server_name tasks.backendforge.qd.je;
+
+    location / {
+        proxy_pass http://127.0.0.1:8001;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+---
+
+## 🧠 Skills Demonstrated
+
+- Django Development
+- Authentication & Authorization
+- MySQL Database Management
+- Docker Containerization
+- Linux Server Administration
+- Nginx Reverse Proxy Configuration
+- Cloud Deployment
+- Git & GitHub Workflow
+- Production Debugging & Monitoring
+
+---
+
+## 📚 Key Learnings
+
+- Django Deployment on Production Servers
+- Docker-Based Application Hosting
+- Connecting Django with MySQL
+- Managing Environment Variables Securely
+- Reverse Proxy Setup using Nginx
+- Deploying Applications on Oracle Cloud Infrastructure
+- Debugging Production Issues
+
+---
+
+## 📬 Contact
+
+- **GitHub:** [https://github.com/yashsaxena15](https://github.com/yashsaxena15)
+- **LinkedIn:** [https://www.linkedin.com/in/yashsaxena15](https://www.linkedin.com/in/yashsaxena15)
+
+---
+
+⭐ If you found this project useful, please consider giving it a **star** on GitHub!
