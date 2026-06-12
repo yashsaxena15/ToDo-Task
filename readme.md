@@ -205,6 +205,15 @@ server {
 - Debugging Production Issues
 
 ---
+## 📸 Screenshots
+### Login Page
+![Login Page](docs/login.png)
+
+### Create Task
+![Swagger](docs/create_task.png)
+
+### Task Dashboard
+![Swagger](docs/task_list.png)
 
 ## 📬 Contact
 
