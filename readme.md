@@ -1,3 +1,7 @@
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![Django](https://img.shields.io/badge/Django-5.2.6-green)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
 # 📝 ToDo Task Web Application
 
 A full-stack ToDo web application built using **Django** and **MySQL**, deployed using **Docker**, **Gunicorn**, and **Nginx** on an Oracle Cloud VM.
